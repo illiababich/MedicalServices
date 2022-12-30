@@ -1,0 +1,32 @@
+pmd {
+    reportsDir = file("$project.buildDir/reports/pmd")
+    ruleSetFiles = files("config/pmd-ruleSet.xml")
+    ruleSets = []
+}
+
+//spotbugs {
+//    effort = "min"
+//    showProgress = project.findProperty('spotbugs.noProgress') ? false : true
+//}
+
+//spotbugsMain {
+//    reports {
+//        html.enabled = project.getProperties().get('spotbugs.report.xml') != 'true'
+//        xml.enabled = project.getProperties().get('spotbugs.report.xml') == 'true'
+//    }
+//}
+
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            element = 'BUNDLE'
+//            excludes
+//            limit {
+//                minimum = 0.0
+//            }
+//        }
+//    }
+//}
+
+check.dependsOn(jacocoTestCoverageVerification)
+test.finalizedBy jacocoTestReport
